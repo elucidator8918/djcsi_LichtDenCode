@@ -13,6 +13,8 @@ router.post('/destroy',EmployeeController.destroy)
 
 router.post('/register',upload.single('file'),AuthController.register)
 router.post('/login',AuthController.login)
+router.post('/logout',AuthController.logout)
+
 router.post('/instagram',AuthController.instagram)
 router.post('/Linkedin',AuthController.Linkedin)
 router.post('/Truecaller',AuthController.Truecaller)

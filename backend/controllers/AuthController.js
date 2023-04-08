@@ -69,6 +69,31 @@ const login = (req,res,next)=>{
             }
         })
 }
+const logout = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).json({
+      error: 'Authorization header missing'
+    });
+  }
+  const token = authHeader.split(' ')[1];
+  // You can also remove the token from the client-side here if you want
+  jwt.verify(token, 'verySecretValue', (err, decoded) => {
+    if (err) {
+      return res.status(401).json({
+        error: 'Invalid token'
+      });
+    }
+    req.token = null; // or remove the token from the client-side
+    res.json({
+      message: 'Logout successful'
+    });
+  });
+};
+
+
+// add this route to your express app
+
 
 const instagram = (req, res, next) => {
     const { user } = req.body;
@@ -201,13 +226,20 @@ const phoneRisk = (req,res,next)=>{
     data: encodedParams
   };
 
-  axios.request(options).then(function (response) {
-    console.log(response.data);
-  }).catch(function (error) {
+  axios.request(options)
+  .then(function (response) {
+    return res.json({
+      message: response.data
+    });
+  })
+  .catch(function (error) {
     console.error(error);
+    return res.status(500).json({
+      error: 'An error occurred while fetching LinkedIn data for the given email'
+    });
   });
 }
 
 module.exports ={
-    register,login,instagram,Linkedin,Truecaller,emailRisk,phoneRisk
+    register,login,instagram,Linkedin,Truecaller,emailRisk,phoneRisk,logout
 }
