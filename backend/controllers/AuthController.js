@@ -35,8 +35,8 @@ const register = (req,res,next)=>{
 }
 
 const login = (req,res,next)=>{
-    var username = req.body.username
-    var password = req.body.password
+    const username = req.body.username
+    const password = req.body.password
     User.findOne({$or:[{email:username},{name:username}]})
     .then(user=>
         {
@@ -149,11 +149,41 @@ const instagram = (req, res, next) => {
       });
   };
   
+  const emailRisk = (req, res, next) => {
+    const { email } = req.body;
+    const encodedParams = new URLSearchParams();
+    encodedParams.append("email", email);
 
+
+    const options = {
+      method: 'POST',
+      url: 'https://email-risk-scoring.p.rapidapi.com/deep_email_check',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-API-KEY': '7cd2e9c214085cb898d6df24bfdbcf643acc73c2ab330b82ea',
+        'X-RapidAPI-Key': '3064e93a75msh4290adb8a28fe61p1a8456jsn4ac87731a7a1',
+        'X-RapidAPI-Host': 'email-risk-scoring.p.rapidapi.com'
+      },
+        data: encodedParams
+      };
   
+      axios.request(options)
+      .then(function (response) {
+        return res.json({
+          message: response.data
+        });
+      })
+      .catch(function (error) {
+        console.error(error);
+        return res.status(500).json({
+          error: 'An error occurred while fetching LinkedIn data for the given email'
+        });
+      });
+    }
   
 
 
 module.exports ={
-    register,login,instagram,Linkedin,Truecaller
+    register,login,instagram,Linkedin,Truecaller,emailRisk
 }

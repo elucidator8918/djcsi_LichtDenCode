@@ -16,4 +16,5 @@ router.post('/login',AuthController.login)
 router.post('/instagram',AuthController.instagram)
 router.post('/Linkedin',AuthController.Linkedin)
 router.post('/Truecaller',AuthController.Truecaller)
+router.post('/emailRisk',AuthController.emailRisk)
 module.exports = router
