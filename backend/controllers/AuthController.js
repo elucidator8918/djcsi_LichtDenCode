@@ -154,14 +154,14 @@ const instagram = (req, res, next) => {
     const encodedParams = new URLSearchParams();
     encodedParams.append("email", email);
 
-
+    //hetanssh apikey
     const options = {
       method: 'POST',
       url: 'https://email-risk-scoring.p.rapidapi.com/deep_email_check',
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
         'Content-Type': 'application/x-www-form-urlencoded',
-        'X-API-KEY': '7cd2e9c214085cb898d6df24bfdbcf643acc73c2ab330b82ea',
+        'X-API-KEY': '77265bbfec66e3e66b68c59f53f37f981c670fafb91ebe245a',
         'X-RapidAPI-Key': '3064e93a75msh4290adb8a28fe61p1a8456jsn4ac87731a7a1',
         'X-RapidAPI-Host': 'email-risk-scoring.p.rapidapi.com'
       },
@@ -183,7 +183,31 @@ const instagram = (req, res, next) => {
     }
   
 
+const phoneRisk = (req,res,next)=>{
+  const {phone} = req.body
+  const encodedParams = new URLSearchParams();
+  encodedParams.append("phone", phone);
+
+  const options = {
+    method: 'POST',
+    url: 'https://phone-risk-scoring.p.rapidapi.com/deep_phone_check',
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-API-KEY': '77265bbfec66e3e66b68c59f53f37f981c670fafb91ebe245a',
+      'X-RapidAPI-Key': '3064e93a75msh4290adb8a28fe61p1a8456jsn4ac87731a7a1',
+      'X-RapidAPI-Host': 'phone-risk-scoring.p.rapidapi.com'
+    },
+    data: encodedParams
+  };
+
+  axios.request(options).then(function (response) {
+    console.log(response.data);
+  }).catch(function (error) {
+    console.error(error);
+  });
+}
 
 module.exports ={
-    register,login,instagram,Linkedin,Truecaller,emailRisk
+    register,login,instagram,Linkedin,Truecaller,emailRisk,phoneRisk
 }
