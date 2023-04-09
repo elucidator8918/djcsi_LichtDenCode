@@ -39,9 +39,9 @@ console.log(currentFlag)
 
             {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-200 hover:font-extrabold hover:shadow-xl transition-all ease-in duration-100 p-2 rounded-lg">Find Jobs</a>*/}
 
-            <a href="#" className="text-md font-semibold leading-6 text-gray-200 hover:font-extrabold hover:shadow-xl transition-all ease-in duration-100 p-2 rounded-lg" onClick={()=>{navigate("")}}>Contact</a> 
+            <a href="#" className="text-md font-semibold leading-6 text-gray-200 hover:font-extrabold hover:shadow-xl transition-all ease-in duration-100 p-2 rounded-lg" onClick={()=>{navigate("/hero")}}>Contact</a> 
 
-            <a href="#" className="text-md font-semibold leading-6 text-gray-200 hover:font-extrabold hover:shadow-xl transition-all ease-in duration-100 p-2 rounded-lg" onClick={()=>{navigate("")}}>About </a>
+            <a href="#" className="text-md font-semibold leading-6 text-gray-200 hover:font-extrabold hover:shadow-xl transition-all ease-in duration-100 p-2 rounded-lg" onClick={()=>{navigate("/about")}}>About </a>
         </div>
         {!localStorage.getItem('flag')?(<div className="hidden lg:flex lg:flex-1 lg:justify-end" onClick={handleLogOut}>LOGOUT</div>):(<div className="hidden lg:flex lg:flex-1 lg:justify-end">
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">

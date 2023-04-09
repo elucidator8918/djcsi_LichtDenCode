@@ -11,6 +11,9 @@ import Navbar from './components/Navbar';
 import alanBtn from "@alan-ai/alan-sdk-web";
 import { useEffect } from 'react';
 import Urlrisk from './components/Urlrisk';
+import Hero from './components/Hero'
+import Footer from './components/Footer';
+import Aboutus from './pages/Aboutus';
 
 
 function App() {
@@ -32,12 +35,14 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/employeeinfo' element={<Employeeinfo/>}/>
         <Route path='/urlrisk' element={<Urlrisk/>}/>
+        <Route path='/hero' element={<Hero/>}/>
+        <Route path='/about' element={<Aboutus/>}/>
+
         
 
 
       </Routes>
 
-      
     </div>
     </>
   );
