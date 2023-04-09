@@ -8,10 +8,11 @@ import axios from 'axios'
 import Particles1 from '../components/Particles1';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Webcam from "react-webcam";
+import { Link } from 'react-router-dom'
 
 const videoConstraints = {
-  width: 200,
-  height: 200,
+  width: 150,
+  height: 150,
   facingMode: "user",
   mirrored:'False'
 };
@@ -30,9 +31,13 @@ export const SignUp = () => {
       formData.append("name", firstName);
       formData.append("email", email);
       formData.append("password", password);
-      
+      formData.append("file",file);
       console.log(file)
   
+      
+      console.log(file)
+      
+    
       const res = await axios.post('http://localhost:5000/register', formData, {
         headers:{
               'Content-Type': `multipart/form-data`,
@@ -40,6 +45,7 @@ export const SignUp = () => {
       });
   
       console.log(res);
+      navigate('/dashboard')
   }
   //WEBCAM PART
   const [id,setId]= useState(1)
@@ -115,16 +121,16 @@ function onChange()
 <div className='container' >
         <div className='mt-4'>
         {/* <Home/> */}
-        <div className="home-container mx-auto col-md-6">
-             <div className="container">
-                 <div className="text-white">
+        <div className="home-container flex items-center mx-auto col-md-6">
+             <div className="container flex items-center justify-center ">
+                 <div className="text-white items-center flex flex-col justify-center">
                      <h1 className='mb-3 text-lg'>Please take an image of your face</h1>
                      <form className="form">
 
                      <div className="webcam-container ">
              <div className="webcam-img flex justify-center">
 
-                 {image == '' ? <Webcam
+                 {image === '' ? <Webcam
                      audio={false}
                      height={400}
                      ref={webcamRef}
@@ -135,7 +141,7 @@ function onChange()
                  /> : <img src={image} />}
              </div>
              <div className='justify-center flex items-center'>
-                 {image != '' ?
+                 {image !== '' ?
                      <button onClick={(e) => {
                          e.preventDefault();
                          setImage('')
@@ -150,8 +156,6 @@ function onChange()
                  }
              </div>
          </div>
-
-
                          {/* <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                          <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} /> */}
                          <div className='flex justify-center items-center mx-auto col-md-6'>
@@ -162,7 +166,7 @@ function onChange()
                         {/* {captchaIsDone && <button>Submit</button>} */}
                                                 
                          </div>
-                         {captchaIsDone &&<button type="submit" className='text-left mt-3 btn text-white hover:bg-violet-800 bg-violet-600 border-violet-600' id="login-button" >Submit</button>}
+                         {captchaIsDone &&<div className='justify-center items-center flex mx-auto'><button type="submit" className=' text-left mt-3 btn text-white hover:bg-violet-800 bg-violet-600 border-violet-600' id="login-button" onClick={()=>{"/dashboard"}} >Sign Up</button></div>}
                      </form>
                  </div>
              </div>
@@ -177,9 +181,8 @@ function onChange()
        </div>
         </div>
         </div>
-
   <div className="col-12 mt-8 justify-center flex items-center">
-    <button type="submit" className="btn text-white hover:bg-violet-800 bg-violet-600 border-violet-600" onClick={handleSubmit}>Sign in</button>
+    <button type="submit" className="btn text-white hover:bg-violet-800 bg-violet-600 border-violet-600" onClick={handleSubmit}>Submit</button>
   </div>
 
   

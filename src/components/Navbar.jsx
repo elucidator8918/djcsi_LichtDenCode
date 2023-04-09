@@ -4,6 +4,17 @@ import image from "./logo.png";
 
 export default function Navbar() {
     const navigate = useNavigate()
+    let currentFlag=localStorage.getItem('flag')
+console.log(currentFlag)
+ 
+    const handleLogOut =async()=>{
+        currentFlag=false
+        localStorage.setItem('flag',currentFlag)
+        console.log(currentFlag)
+        navigate('/')
+
+    
+      }
     return ( 
 
     <div className='flex flex-row static '>
@@ -32,12 +43,13 @@ export default function Navbar() {
 
             <a href="#" className="text-md font-semibold leading-6 text-gray-200 hover:font-extrabold hover:shadow-xl transition-all ease-in duration-100 p-2 rounded-lg" onClick={()=>{navigate("")}}>About </a>
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        {!localStorage.getItem('flag')?(<div className="hidden lg:flex lg:flex-1 lg:justify-end" onClick={handleLogOut}>LOGOUT</div>):(<div className="hidden lg:flex lg:flex-1 lg:justify-end">
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a href="#" className="text-sm font-semibold leading-6 text-gray-200 mr-2 p-2 hover:bg-violet-600 rounded-md transition-all duration-500 ease-in-out border-2 border-violet-600" onClick={()=>{navigate("/signup")}}>Sign Up <span aria-hidden="true"></span></a>
             <a href="#" className="text-sm font-semibold leading-6 text-gray-200 p-2 hover:bg-violet-600 rounded-md transition-all duration-500 ease-in-out border-2  border-violet-600" onClick={()=>{navigate("/login")}}>Log in <span aria-hidden="true">&rarr;</span></a>
         </div>
-        </div>
+        </div>)}
+        
         </nav>
         
         <div className="lg:hidden" role="dialog" aria-modal="true">

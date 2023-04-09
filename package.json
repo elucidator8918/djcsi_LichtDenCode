@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@alan-ai/alan-sdk-web": "^1.8.43",
     "@headlessui/react": "^1.7.13",
     "@react-three/drei": "^9.64.0",
     "@react-three/fiber": "^8.12.0",
@@ -14,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^2.1.0",
     "react-parallax-tilt": "^1.7.126",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "react-simple-typewriter": "^5.0.1",
